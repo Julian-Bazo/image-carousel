@@ -1,3 +1,10 @@
 import "./styles.css";
+import createGallery from "./createGallery";
+import imgONE from "./img/anna-pelzer-IGfIGP5ONV0-unsplash.jpg";
 
-console.log("Testing");
+
+const gallery = [imgONE, imgONE, imgONE];
+
+
+
+createGallery(gallery);
