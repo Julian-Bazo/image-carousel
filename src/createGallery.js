@@ -1,4 +1,4 @@
-export default function createGallery(array, size) {
+export default function createGallery(array, size, title) {
 
     let galleryNum = 0;
     galleryNum++;
@@ -6,6 +6,18 @@ export default function createGallery(array, size) {
     let selector = 0;
     let scrollPosition;
     const content = document.querySelector(".content");
+    const wholeGallery = document.createElement("div");
+        wholeGallery.style.display = "flex";
+        wholeGallery.style.flexDirection = "column";
+        wholeGallery.style.justifySelf = "center";
+        content.appendChild(wholeGallery);
+    
+    if (title) {
+        const titleHeader = document.createElement("h1");
+        titleHeader.textContent = `${title}`;
+        wholeGallery.appendChild(titleHeader);
+        wholeGallery.style.textAlign = "center";
+    }
 
     const imgFrame = document.createElement("div");
         imgFrame.classList.add("img-frame");
@@ -14,7 +26,7 @@ export default function createGallery(array, size) {
         imgFrame.style.justifySelf = "center";
         imgFrame.style.border = "2px black solid";
         imgFrame.style.position = "relative";
-        content.appendChild(imgFrame);
+        wholeGallery.appendChild(imgFrame);
     
     const imgWide = document.createElement("div");
         imgWide.classList.add("img-wide");
@@ -22,7 +34,7 @@ export default function createGallery(array, size) {
         imgWide.style.boxSizing = "content-box"
         imgFrame.appendChild(imgWide);
         imgWide.style.display = "flex";
-        imgWide.style.gap = "1rem"
+        imgWide.style.gap = "1rem";
     
     array.map((img) => {
         const imgDiv = document.createElement("img");
@@ -34,13 +46,35 @@ export default function createGallery(array, size) {
         imgNum++;
     })
 
-    console.log(imgNum);
+     const navigationDiv = document.createElement("div");
+        navigationDiv.style.display = "flex";
+        navigationDiv.style.justifyContent = "center";
+        navigationDiv.style.backgroundColor = "#eee";
+        navigationDiv.style.border = "2px solid gray"
+        navigationDiv.style.borderTop = "none";
+        navigationDiv.style.gap = ".3rem"
+        wholeGallery.appendChild(navigationDiv);
+        for (let i = 1; i <= imgNum; i++) {
+            const navigationDot = document.createElement("div");
+            navigationDot.textContent = `${i}`;    
+            navigationDot.style.border = "2px solid black";
+            navigationDot.style.borderRadius = "5rem";
+                navigationDiv.appendChild(navigationDot);
+            navigationDot.addEventListener("click", () => {
+                console.log(`Dot ${i} was clicked`);
+                document.getElementById(`G${galleryNum}I${i - 1}`).scrollIntoView({
+                    behavior: "smooth",
+                });
+            })
+        }
+
+    
 
     const buttonDiv = document.createElement("div");
-        content.appendChild(buttonDiv);
+        wholeGallery.appendChild(buttonDiv);
         buttonDiv.style.display = "flex";
         buttonDiv.style.gap = "6rem";
-        buttonDiv.style.justifySelf = "center"
+        buttonDiv.style.justifyContent = "center"
         buttonDiv.style.marginTop = "2rem";
 
     const backButton = document.createElement("button");

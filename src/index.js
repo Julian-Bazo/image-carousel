@@ -7,4 +7,4 @@ const gallery = [imgONE, imgONE, imgONE, imgONE];
 
 
 
-createGallery(gallery, "30rem");
+createGallery(gallery, "30rem", "Favorite Salads");
