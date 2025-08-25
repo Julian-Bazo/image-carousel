@@ -18,7 +18,7 @@ export default function createGallery(array) {
     
     const imgWide = document.createElement("div");
         imgWide.classList.add("img-wide");
-        imgWide.style.overflow = "scroll";
+        imgWide.style.overflow = "hidden";
         imgWide.style.boxSizing = "content-box"
         imgFrame.appendChild(imgWide);
         imgWide.style.display = "flex";

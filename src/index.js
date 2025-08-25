@@ -3,7 +3,7 @@ import createGallery from "./createGallery";
 import imgONE from "./img/anna-pelzer-IGfIGP5ONV0-unsplash.jpg";
 
 
-const gallery = [imgONE, imgONE, imgONE];
+const gallery = [imgONE, imgONE, imgONE, imgONE];
 
 
 
