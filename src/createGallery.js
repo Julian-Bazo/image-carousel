@@ -1,4 +1,4 @@
-export default function createGallery(array) {
+export default function createGallery(array, size) {
 
     let galleryNum = 0;
     galleryNum++;
@@ -9,7 +9,7 @@ export default function createGallery(array) {
 
     const imgFrame = document.createElement("div");
         imgFrame.classList.add("img-frame");
-        imgFrame.style.width = "20rem"
+        imgFrame.style.width = `${size}`
         imgFrame.style.overflow = "hidden";
         imgFrame.style.justifySelf = "center";
         imgFrame.style.border = "2px black solid";
@@ -29,7 +29,7 @@ export default function createGallery(array) {
         imgDiv.src = `${img}`
         imgDiv.id = `G${galleryNum}I${imgNum}`;
         console.log(imgDiv.id);
-        imgDiv.style.width = "20rem"
+        imgDiv.style.width = `${size}`;
         imgWide.appendChild(imgDiv);
         imgNum++;
     })
