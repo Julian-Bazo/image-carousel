@@ -4,7 +4,6 @@ export default function createGallery(array, size, title) {
     galleryNum++;
     let imgNum = 0;
     let selector = 0;
-    let scrollPosition;
     let dotArray = [];
 
     const content = document.querySelector(".content");
@@ -30,11 +29,9 @@ export default function createGallery(array, size, title) {
         imgFrame.style.position = "relative";
         imgFrame.addEventListener("mouseenter", () => {
             clearInterval(timer);
-            console.log("timer stopped");
         })
         imgFrame.addEventListener("mouseleave", () => {
             timer = setInterval(moveSlide, 5000);
-            console.log("timer reset");
         })
         wholeGallery.appendChild(imgFrame);
     
@@ -44,13 +41,14 @@ export default function createGallery(array, size, title) {
         imgWide.style.boxSizing = "content-box"
         imgFrame.appendChild(imgWide);
         imgWide.style.display = "flex";
-        imgWide.style.gap = "1rem";
+
+        // CHANGE GAP BETWEEN IMGS HERE
+        imgWide.style.gap = ".2rem";
     
     array.map((img) => {
         const imgDiv = document.createElement("img");
         imgDiv.src = `${img}`
         imgDiv.id = `G${galleryNum}I${imgNum}`;
-        console.log(imgDiv.id);
         imgDiv.style.width = `${size}`;
         imgWide.appendChild(imgDiv);
         imgNum++;
@@ -72,26 +70,15 @@ export default function createGallery(array, size, title) {
                 navigationDot.style.borderRadius = "5rem";
                 fillDot();
                 dotArray.push(navigationDot);
-                console.log(dotArray);
                 navigationDiv.appendChild(navigationDot);
             navigationDot.addEventListener("click", () => {
-                console.log(`Dot ${i} was clicked`);
                 navigationDot.style.backgroundColor = "black";
                 resetTimer();
                 document.getElementById(`G${galleryNum}I${i - 1}`).scrollIntoView({
                     behavior: "smooth",
                 });
                 selector = dotArray.indexOf(navigationDot);
-                console.log(`selector: ${selector}`);
                 fillDot();
-                // dotArray.map((dot) => {
-                //     if ((dotArray.indexOf(dot)) === selector) {
-                //         dot.style.backgroundColor = "black";
-                //     }
-                //     else {
-                //         dot.style.backgroundColor = "#eee";
-                //     }
-                // })
             })
         }
 
@@ -115,9 +102,6 @@ export default function createGallery(array, size, title) {
         buttonDiv.appendChild(forwardButton);
     
     forwardButton.addEventListener("click", () => {
-        console.log("==>");
-        scrollPosition = document.getElementById(`G${galleryNum}I${selector}`);
-        console.log(scrollPosition);
         selector++
         if (selector >= imgNum) {
             selector = 0;
@@ -131,14 +115,10 @@ export default function createGallery(array, size, title) {
     })
 
     backButton.addEventListener("click", () => {
-        console.log("<==");
-        scrollPosition = document.getElementById(`G${galleryNum}I${selector}`);
-        console.log(scrollPosition);
         selector--;
         if (selector < 0) {
             selector = imgNum - 1;
         }
-        console.log(`Selector: ${selector}`);
         document.getElementById(`G${galleryNum}I${selector}`).scrollIntoView({
             behavior: "smooth",
         });
