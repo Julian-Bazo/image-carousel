@@ -28,6 +28,14 @@ export default function createGallery(array, size, title) {
         imgFrame.style.justifySelf = "center";
         imgFrame.style.border = "2px black solid";
         imgFrame.style.position = "relative";
+        imgFrame.addEventListener("mouseenter", () => {
+            clearInterval(timer);
+            console.log("timer stopped");
+        })
+        imgFrame.addEventListener("mouseleave", () => {
+            timer = setInterval(moveSlide, 5000);
+            console.log("timer reset");
+        })
         wholeGallery.appendChild(imgFrame);
     
     const imgWide = document.createElement("div");
@@ -69,6 +77,7 @@ export default function createGallery(array, size, title) {
             navigationDot.addEventListener("click", () => {
                 console.log(`Dot ${i} was clicked`);
                 navigationDot.style.backgroundColor = "black";
+                resetTimer();
                 document.getElementById(`G${galleryNum}I${i - 1}`).scrollIntoView({
                     behavior: "smooth",
                 });
@@ -118,6 +127,7 @@ export default function createGallery(array, size, title) {
         });
 
         fillDot();
+        resetTimer();
     })
 
     backButton.addEventListener("click", () => {
@@ -133,6 +143,7 @@ export default function createGallery(array, size, title) {
             behavior: "smooth",
         });
         fillDot();
+        resetTimer();
     })
 
     function fillDot() {
@@ -147,6 +158,18 @@ export default function createGallery(array, size, title) {
         })
     }
 
+    let timer = setInterval(moveSlide, 5000);
+
+
+
+    function moveSlide() {
+        forwardButton.click();
+    }
+    
+    function resetTimer() {
+        clearInterval(timer);
+        timer = setInterval(moveSlide, 5000);
+    }
 }
 
 // Make arrows positioning and look less jarring
