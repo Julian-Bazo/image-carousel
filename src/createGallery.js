@@ -54,17 +54,32 @@ export default function createGallery(array, size, title) {
         navigationDiv.style.borderTop = "none";
         navigationDiv.style.gap = ".3rem"
         wholeGallery.appendChild(navigationDiv);
+        let dotArray = [];
         for (let i = 1; i <= imgNum; i++) {
             const navigationDot = document.createElement("div");
-            navigationDot.textContent = `${i}`;    
-            navigationDot.style.border = "2px solid black";
-            navigationDot.style.borderRadius = "5rem";
+                navigationDot.style.border = "2px solid black";
+                navigationDot.style.width = ".7rem";
+                navigationDot.style.height = ".7rem"
+                navigationDot.style.borderRadius = "5rem";
+                dotArray.push(navigationDot);
+                console.log(dotArray);
                 navigationDiv.appendChild(navigationDot);
             navigationDot.addEventListener("click", () => {
                 console.log(`Dot ${i} was clicked`);
+                navigationDot.style.backgroundColor = "black";
                 document.getElementById(`G${galleryNum}I${i - 1}`).scrollIntoView({
                     behavior: "smooth",
                 });
+                let currentDot = dotArray.indexOf(navigationDot) + 1;
+                console.log(currentDot);
+                dotArray.map((dot) => {
+                    if ((dotArray.indexOf(dot) + 1) === currentDot) {
+                        dot.style.backgroundColor = "black";
+                    }
+                    else {
+                        dot.style.backgroundColor = "#eee";
+                    }
+                })
             })
         }
 
@@ -118,9 +133,7 @@ export default function createGallery(array, size, title) {
 
 }
 
-// Allows an array for parameters, will loop through array to create
-// as many divs as imgs in array.
-// These divs will be added to the wide whole gallery div
-// Wide gallery div will have a smaller div above it
-
-// 
+// Navigation icons are not numbers but a dot
+// Dot is able to be filled in on click (maybe focus?)
+// Make arrows positioning and look less jarring
+// Add 5 second timeout to move forward
