@@ -5,6 +5,8 @@ export default function createGallery(array, size, title) {
     let imgNum = 0;
     let selector = 0;
     let scrollPosition;
+    let dotArray = [];
+
     const content = document.querySelector(".content");
     const wholeGallery = document.createElement("div");
         wholeGallery.style.display = "flex";
@@ -54,13 +56,13 @@ export default function createGallery(array, size, title) {
         navigationDiv.style.borderTop = "none";
         navigationDiv.style.gap = ".3rem"
         wholeGallery.appendChild(navigationDiv);
-        let dotArray = [];
         for (let i = 1; i <= imgNum; i++) {
             const navigationDot = document.createElement("div");
                 navigationDot.style.border = "2px solid black";
                 navigationDot.style.width = ".7rem";
                 navigationDot.style.height = ".7rem"
                 navigationDot.style.borderRadius = "5rem";
+                fillDot();
                 dotArray.push(navigationDot);
                 console.log(dotArray);
                 navigationDiv.appendChild(navigationDot);
@@ -70,16 +72,17 @@ export default function createGallery(array, size, title) {
                 document.getElementById(`G${galleryNum}I${i - 1}`).scrollIntoView({
                     behavior: "smooth",
                 });
-                let currentDot = dotArray.indexOf(navigationDot) + 1;
-                console.log(currentDot);
-                dotArray.map((dot) => {
-                    if ((dotArray.indexOf(dot) + 1) === currentDot) {
-                        dot.style.backgroundColor = "black";
-                    }
-                    else {
-                        dot.style.backgroundColor = "#eee";
-                    }
-                })
+                selector = dotArray.indexOf(navigationDot);
+                console.log(`selector: ${selector}`);
+                fillDot();
+                // dotArray.map((dot) => {
+                //     if ((dotArray.indexOf(dot)) === selector) {
+                //         dot.style.backgroundColor = "black";
+                //     }
+                //     else {
+                //         dot.style.backgroundColor = "#eee";
+                //     }
+                // })
             })
         }
 
@@ -113,8 +116,8 @@ export default function createGallery(array, size, title) {
         document.getElementById(`G${galleryNum}I${selector}`).scrollIntoView({
             behavior: "smooth",
         });
-        console.log(`Selector: ${selector}`);
 
+        fillDot();
     })
 
     backButton.addEventListener("click", () => {
@@ -129,11 +132,22 @@ export default function createGallery(array, size, title) {
         document.getElementById(`G${galleryNum}I${selector}`).scrollIntoView({
             behavior: "smooth",
         });
+        fillDot();
     })
+
+    function fillDot() {
+        dotArray.map((dot) => {
+
+        if ((dotArray.indexOf(dot)) === selector) {
+            dot.style.backgroundColor = "black";
+        }
+        else {
+            dot.style.backgroundColor = "#eee";
+        }
+        })
+    }
 
 }
 
-// Navigation icons are not numbers but a dot
-// Dot is able to be filled in on click (maybe focus?)
 // Make arrows positioning and look less jarring
 // Add 5 second timeout to move forward
