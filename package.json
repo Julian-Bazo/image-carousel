@@ -1,4 +1,22 @@
 {
+  "name": "@julian-bazo/image-carousel",
+  "version": "1.0.0",
+  "description": "JS module for quick image gallery setup",
+  "main": "createGallery.js",
+  "exports": "./createGallery.js",
+  "files": [
+    "createGallery.js",
+    "README.md",
+    "LICENSE"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:Julian-Bazo/image-carousel.git"
+  },
+  "keywords": [],
+  "author": "julian-bazo <Julian.Bazo27@gmail.com>",
+  "license": "MIT",
+  "homepage": "https://github.com/Julian-Bazo/image-carousel",
   "devDependencies": {
     "@eslint/js": "^9.34.0",
     "css-loader": "^7.1.2",
@@ -21,5 +39,4 @@
     "prettier-setup": "npm i -D --save-exact prettier && node -e \"require('fs').writeFileSync('.prettierrc','{}\\n')\" && node -e \"require('fs').writeFileSync('.prettierignore','# Ignore artifacts:\\nbuild\\ncoverage\\n')\" && npx webpack",
     "fix": "npx prettier . --write"
   }
-
 }
