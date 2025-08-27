@@ -1,11 +1,12 @@
 # image-carousel
+
 A re-usable function to create image carousels on websites.
 
 How to use:
 
 1. Import createGallery from createGallery.js
 2. Create an Array of images
-    Example : const gallery = [imgONE, imgTWO, imgTHREE];
+   Example : const gallery = [imgONE, imgTWO, imgTHREE];
 3. Use the createGallery() function which allows THREE parameters
 
 Parameters:
@@ -26,5 +27,3 @@ const gallery = [imgONE];
 
 Current bugs:
 Adding too many images while ALSO having a small gallery can create issues. Play nice with sizing if you want a very small gallery it would be better to use another library.
-
-
